@@ -3,6 +3,7 @@
 
 It contains all Thunk Creators and Thunks.
 ================================================== */
+//import { isCompositeComponent } from 'react-dom/test-utils';
 import * as ac from './actions/actionCreators';  // Import Action Creators ("ac" keyword Action Creator)
 const axios = require('axios');
 
@@ -28,6 +29,34 @@ export const fetchCampusThunk = (id) => async (dispatch) => {  // The THUNK
     let res = await axios.get(`/api/campuses/${id}`);  
     dispatch(ac.fetchCampus(res.data));
   } catch(err) {
+    console.error(err);
+  }
+};
+
+export const addCampusThunk = (campus) => async (dispatch) => {
+  try {
+    let res = await axios.post(`/api/campuses`, campus);
+    dispatch(ac.addCampus(res.data));
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const deleteCampusThunk = campusId => async (dispatch) => {
+  try {
+    await axios.delete(`/api/campuses/${campusId}`);
+    dispatch(ac.deleteCampus(campusId));
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const editCampusThunk = campus => async (dispatch) => {
+  try {
+    let updatedCampus = await axios.put(`/api/campuses/${campus.id}`, campus);
+    dispatch(ac.editCampus(updatedCampus));
+  } catch (err) {
     console.error(err);
   }
 };
