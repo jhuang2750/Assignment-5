@@ -1,5 +1,5 @@
 /*==================================================
-NewStudentView.js
+EditCampusView.js
 
 The Views component is responsible for rendering web page with data provided by the corresponding Container component.
 It constructs a React component to display the new student page.
@@ -7,6 +7,7 @@ It constructs a React component to display the new student page.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { link } from 'react-router-dom';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
@@ -34,50 +35,51 @@ const useStyles = makeStyles( () => ({
   },
 }));
 
-const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+const EditStudentView = (props) => {
+  const {handleChange, handleSubmit, studentInfo } = props;
+  const student = studentInfo.student;
   const classes = useStyles();
 
   // Render a New Student view with an input form
   return (
     <div>
-      <h1>New Student</h1>
+      <h1>Edit Student</h1>
 
       <div className={classes.root}>
         <div className={classes.formContainer}>
           <div className={classes.formTitle}>
             <Typography style={{fontWeight: 'bold', fontFamily: 'Courier, sans-serif', fontSize: '20px', color: '#11153e'}}>
-              Add a Student
+              Edit Student
             </Typography>
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
+            <input type="text" name="firstname" required="required" onChange ={(e) => handleChange(e)} defaultValue={student.firstname} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" required="required" onChange={(e) => handleChange(e)} defaultValue={student.lastname}/>
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>CampusId: </label>
+            <input type="text" name="campusId" required="required" onChange={(e) => handleChange(e)} defaultValue={student.campusId}/>
             <br/>
             <br/>
 
-            <label style= {{color:'#11153e', fontWeight: 'bold'}}>GPA: </label>
-            <input type="number" name="gpa" onChange ={(e) => handleChange(e)} step="0.1" />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>GPA: </label>
+            <input type="number" name="gpa" required="required" onChange={(e) => handleChange(e)} defaultValue={student.gpa} step="0.1"/>
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Email: </label>
-            <input type="text" name="email" onChange={(e) => handleChange(e)} />
+            <input type="text" name="email" required="required" onChange={(e) => handleChange(e)} defaultValue={student.email}/>
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Image Url: </label>
-            <input type="text" name="imageUrl" onChange={(e) => handleChange(e)} />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>ImageUrl: </label>
+            <input type="text" name="imageUrl" required="required" onChange={(e) => handleChange(e)} defaultValue={student.imageUrl}/>
             <br/>
             <br/>
 
@@ -87,10 +89,12 @@ const NewStudentView = (props) => {
             <br/>
             <br/>
           </form>
+            <br/>
+            <link to={'/students'}>Back</link>
           </div>
       </div>
     </div>    
   )
 }
 
-export default NewStudentView;
+export default EditStudentView;
