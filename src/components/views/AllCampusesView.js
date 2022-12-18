@@ -9,11 +9,13 @@ import { Link } from "react-router-dom";
 import { deleteCampus } from "../../store/actions/actionCreators";
 
 const AllCampusesView = (props) => {
+  const {allCampuses, deleteCampus} = props;
+  
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return <div>There are no campuses.</div>;
   }
-
+  
   // If there is at least one campus, render All Campuses view 
   return (
     <div>
@@ -35,6 +37,9 @@ const AllCampusesView = (props) => {
       <br/>
       <Link to={`/newcampus`}>
         <button>Add New Campus</button>
+      </Link>
+      <Link to={`/campus/${campus.id}/edit`}>
+        <button>Edit</button>
       </Link>
       <br/><br/>
     </div>
