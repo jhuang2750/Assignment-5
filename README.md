@@ -1,3 +1,7 @@
+Jack Huang - jhuang2750
+I had issues with connecting to the database. At first I had a "error: password authentication failed for user 'postgres'", fixed that temporarily
+by uninstalling postgresql but the error comes back.
+
 # client-starter-code
 
 This repository is the client (front-end) starter code for Final Project (CRUD Application).
