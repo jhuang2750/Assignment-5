@@ -105,7 +105,7 @@ const mapDispatch = (dispatch) => {
     })
 }
 
-EditCampusContainer.PropTypes = {
+EditCampusContainer.propTypes = {
     fetchCampus: PropTypes.func.isRequired,
     editCampus: PropTypes.func.isRequired,
 }
